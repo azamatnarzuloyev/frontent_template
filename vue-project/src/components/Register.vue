@@ -9,28 +9,18 @@
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form>
                 <div class="form-outline mb-3">
-                <input type="text" class="form-control form-control-lg"
-                  placeholder="Enter name" />
-               
-              </div>
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control form-control-lg"
-                  placeholder="Enter a valid email address" />
-            
-              </div>
-    
-              <!-- Password input -->
-              <div class="form-outline mb-3">
-                <input type="password" id="form3Example4" class="form-control form-control-lg"
-                  placeholder="Enter password" />
-              
-              </div>
+                  <Input :type="'text'" placeholder="name">  </Input>
+                </div>
+                <div class="form-outline mb-3">
+                  <Input :type="'email'" placeholder="email">  </Input>
+                </div>
+                <div class="form-outline mb-3">
+                  <Input :type="'password'" placeholder="password">  </Input>
+                </div>
     
             
               <div class="text-center text-lg-start mt-4 pt-2">
-                <button type="button" class="btn btn-primary btn-lg"
-                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+               <Button type="submit">  Register</Button>
              
               </div>
     
@@ -42,6 +32,7 @@
     </section>
     </template>
 <script>
+
 export default {
 
     

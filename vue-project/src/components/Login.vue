@@ -8,25 +8,18 @@
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form>
-               
-              <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control form-control-lg"
-                  placeholder="Enter a valid email address" />
-            
-              </div>
-    
-              <!-- Password input -->
-              <div class="form-outline mb-3">
-                <input type="password" id="form3Example4" class="form-control form-control-lg"
-                  placeholder="Enter password" />
-              
-              </div>
+               <Input :type="'text'" placeholder="email" /> 
+               </div>
+               <div class="form-outline mb-4">
+               <Input :type="'password'" placeholder="password" /> 
+               </div>
+
+           
     
             
               <div class="text-center text-lg-start mt-4 pt-2">
-                <button type="button" class="btn btn-primary btn-lg"
-                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+              <Button type="submit" :disabled="isLoading" @click="setloading"> Login</Button>
              
               </div>
     
@@ -38,9 +31,21 @@
     </section>
     </template>
 <script>
+
 export default {
 
-    
+  computed: {
+    isLoading() {
+     return this.$store.state.auth.isloading
+    },
+  },
+  methods: {
+    setloading(e) {
+      e.preventDefault();
+      this.$store.dispatch('login')
+      
+    }
+  },    
 }
 </script>
 <style scoped>

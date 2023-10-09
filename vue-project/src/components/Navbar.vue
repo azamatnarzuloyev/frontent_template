@@ -1,12 +1,12 @@
 <template>
 <div class="container">
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom aaaa">
       <a  class="d-flex align-items-center link-body-emphasis text-decoration-none">
-       <img :src="logo" alt="logo" style="width: 150px; height: 70px;" @click="Homeclick">
+       <img :src="logo" alt="logo" style="width: 150px; height: 70px;" @click="Homeclick" class="logosts">
       
       </a>
 
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto ml">
         <RouterLink :to="{name: 'register'}" class="me-3 py-2 link-body-emphasis text-decoration-none"> Register</RouterLink>
         <RouterLink :to="{name: 'login'}" class="me-3 py-2 link-body-emphasis text-decoration-none"> Login </RouterLink>
     
@@ -33,6 +33,14 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
+
+.ml {
+  margin-right:50px ;
+}
+  .logosts {
+    margin-left: 50px;
+  }
+
     
 </style>
