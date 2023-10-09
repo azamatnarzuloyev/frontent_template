@@ -1,0 +1,1 @@
+export const logo = 'https://sts-hik.uz/media/site_logo/imgs/logosts_utFgGsN.webp'
