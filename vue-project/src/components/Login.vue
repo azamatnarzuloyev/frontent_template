@@ -19,7 +19,7 @@
     
             
               <div class="text-center text-lg-start mt-4 pt-2">
-              <Button type="submit" :disabled="isLoading" @click="setloading"> Login</Button>
+              <Button type="submit"> Login</Button>
              
               </div>
     

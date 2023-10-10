@@ -9,18 +9,18 @@
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form>
                 <div class="form-outline mb-3">
-                  <Input :type="'text'" placeholder="name">  </Input>
+                  <Input :type="'text'" placeholder="name" v-model="username">  </Input>
                 </div>
                 <div class="form-outline mb-3">
-                  <Input :type="'email'" placeholder="email">  </Input>
+                  <Input :type="'email'" placeholder="email" v-model="email">  </Input>
                 </div>
                 <div class="form-outline mb-3">
-                  <Input :type="'password'" placeholder="password">  </Input>
+                  <Input :type="'password'" placeholder="password" v-model="password">  </Input>
                 </div>
     
             
               <div class="text-center text-lg-start mt-4 pt-2">
-               <Button type="submit">  Register</Button>
+               <Button type="submit"  :disabled="isLoading" @click="setloading">  Register</Button>
              
               </div>
     
@@ -34,6 +34,38 @@
 <script>
 
 export default {
+  date () {
+    return {
+        username:'',
+        password:'',
+        email:'',
+    }
+  },
+  computed: {
+    isLoading() {
+     return this.$store.state.auth.isloading
+    },
+  },
+  methods: {
+    setloading(e) {
+      e.preventDefault();
+   const data = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      }
+      this.$store.dispatch('register', data)
+      .then(user => {
+        console.log(user)
+        this.$router.push('/')
+        
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      
+    }
+  },    
 
     
 }

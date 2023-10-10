@@ -1,17 +1,46 @@
+import Authenuser from "../service/auth"
 const state = {
-    isloading:false
+    isloading:false,
+    user: null,
+    errors:null
 }
 const mutations = {
-    isloadingLoder(state) {
+    registerStart(state) {
         state.isloading = true
-    }
+        state.user = null
+        state.errors = null
+        
+    },
+    registerSucsess(state, payload) {
+        state.isloading = false
+        state.user = payload
+    },
+    registerFailer(state, payload) {
+        state.isloading = false
+        state.errors = payload
+    },
 }
 
 const actions  = {
-    login(content) {
-     setTimeout(()=>{
-        content.commit('isloadingLoder')
-     }, 2000)
+    register(context, user) {
+       return new Promise((resolve, reject)=> {
+        context.commit('registerStart')
+        Authenuser.register(user)
+        .then(respone=>{
+      
+            context.commit('registerSucsess', respone.data.user)
+            resolve(respone.data.user)
+         
+        })
+        .catch((error) => {
+             
+            context.commit('registerFailer', error.message)
+            reject(error.message)
+          
+        })
+       })
+       
+    
     }
 }
 
