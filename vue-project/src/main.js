@@ -10,10 +10,11 @@ import store from './stores'
 const app = createApp(App)
 uiComponent.map(component => app.component(component.name, component))
 
-app.use(store)
 
 
 app.use(router)
+app.use(store)
+
 
 
 app.mount('#app')
