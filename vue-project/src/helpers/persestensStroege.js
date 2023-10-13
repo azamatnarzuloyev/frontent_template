@@ -1,3 +1,4 @@
+
 export const getitem = key => {
     try {
       return JSON.parse(localStorage.getItem(key))
@@ -15,5 +16,15 @@ export const setitem = (key, data) => {
     catch(error) {
 
         console.log('error setitems')
+    }
+}
+
+export const removeitem = key => {
+    try {
+     return localStorage.removeItem(key)
+    }
+    catch(error) {
+
+        console.log('remove item data ')
     }
 }

@@ -1,39 +1,80 @@
 import Authenuser from "../service/auth"
-import { setitem } from "../helpers/persestensStroege"
+import { removeitem, setitem } from "../helpers/persestensStroege"
+import { gettertypes } from "./types"
 const state = {
     isloading:false,
     user: null,
-    errors:null
+    errors:null,
+    logindIn:null
 }
 const mutations = {
     registerStart(state) {
         state.isloading = true
         state.user = null
         state.errors = null
+        state.logindIn = null
         
     },
     registerSucsess(state, payload) {
         state.isloading = false
         state.user = payload
+        state.logindIn = true
     },
     registerFailer(state, payload) {
         state.isloading = false
         state.errors = payload
+        state.logindIn = false
     },
     loginStart(state) {
         state.isloading = true
         state.user = null
         state.errors = null
+        state.logindIn = null
         
     },
     loginSucsess(state, payload) {
         state.isloading = false
         state.user = payload
+        state.logindIn = true
     },
     loginFailer(state, payload) {
         state.isloading = false
         state.errors = payload
+        state.logindIn = false
     },
+    getUserstart(state) {
+        state.isloading = true
+     
+    },
+    getuserSeccess(state , payload) {
+        state.isloading =false
+        state.logindIn = true
+        state.user = payload
+    },
+    getUserFailer(state) {
+        state.isloading = false
+        state.user = null
+        state.logindIn = false
+    },
+    logout(state) {
+      
+        state.user = null
+        state.logindIn = false
+    }
+
+}
+
+const getters =  {
+    [gettertypes.correntUsers]: state => {
+    return state.user
+   },
+   [gettertypes.isLoggedIn] : state => {
+    return Boolean(state.logindIn)
+   },
+   [gettertypes.isAnonamius] : state => {
+    return state.isLoggedIn===false
+   }
+   
 }
 
 const actions  = {
@@ -51,6 +92,7 @@ const actions  = {
         .catch((error) => {
              
             context.commit('registerFailer', error.message)
+
             reject(error.message)
           
         })
@@ -78,7 +120,26 @@ const actions  = {
         })
         
      
+     },
+     getUser(context) {
+        return new Promise ((resolve) => {
+            context.commit('getUserstart')
+            Authenuser.getUser().then(
+                response => {
+                    context.commit('getuserSeccess', response.data.user)
+                    resolve(response.data.user)
+                }
+            ).catch(
+               context.commit('getUserFailer') 
+            )
+
+        } )
+
+     },
+     logout(context) {
+        context.commit('logout')
+        removeitem('token')
      }
 }
 
-export default { state, mutations, actions}
+export default { state, mutations, actions, getters}

@@ -10,7 +10,8 @@
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form>
               <div class="form-outline mb-4">
-               <Input :type="'text'" placeholder="email"  v-model="email"/> 
+               
+               <Input :type="'email'" placeholder="email"  v-model="email"/> 
                </div>
                <div class="form-outline mb-4">
                <Input :type="'password'" placeholder="password"  v-model="password"/> 
