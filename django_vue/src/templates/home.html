@@ -1,0 +1,11 @@
+    <head>
+        <title> django  </title>
+    </head>
+    {% extends 'base.html' %}
+    {% load static %}
+
+    {% block content %}
+
+    <div id="app" data-token="{{ csrf_token }}"  {% if user.is_authenticated %}  data-user="{{ user }}" {% endif%} >  </div>
+
+    {% endblock %}

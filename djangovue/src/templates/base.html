@@ -1,0 +1,29 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    
+
+    {% for file in vue_css_paths %}
+
+    <link rel="stylesheet"  href="{% static file %}"/>
+
+    {% endfor %}
+
+</head>
+<body>
+    <h3> hello words  </h3>
+
+   {% block content%}
+      
+   {% endblock %}
+   {% for vue in vue_js_paths %}
+   <script src="{% static vue %}"> </script>
+   {% endfor %}
+</body>
+</html>
